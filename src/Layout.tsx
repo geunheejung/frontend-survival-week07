@@ -1,7 +1,9 @@
 import { Outlet } from 'react-router';
 import { ClipLoader } from 'react-spinners';
+import styled from 'styled-components';
 import Typo from './components/Typo';
 import { useSelector } from './hooks/useStore';
+import { Flex, Logo, Text } from './pages/HomePage';
 
 function Loading() {
   return (
@@ -24,6 +26,25 @@ function Error() {
   );
 }
 
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  width: 1080px;
+  height: 1920px;
+  padding: 20px 0;
+  background: linear-gradient(134deg, #F89E21 0.7%, #FF6400 65.66%);
+`;
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+`;
+const Main = styled.main`
+  
+`;
+
 function Layout() {
   const fetchStatus = useSelector((state) => state.ui.fetchStatus);
 
@@ -35,14 +56,15 @@ function Layout() {
   };
 
   return (
-    <div className="layout">
-      <header>
-        <Typo level={1}>메가테라 푸드코트 키오스크</Typo>
-      </header>
-      <main>
+    <Wrapper>
+      <Header>
+        <Logo />
+        <Text color="light" fontSize="md">메가테라 푸드코트 키오스크</Text>
+      </Header>
+      <Main>
         {renderContent()}
-      </main>
-    </div>
+      </Main>
+    </Wrapper>
   );
 }
 
